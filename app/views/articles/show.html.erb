@@ -29,18 +29,9 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @article.user %>
+  <strong>Posted By:</strong>
+  <%= @user %>
 </p>
-
-<h4>Add a Comment</h4>
-<%#=render "comments/form", comment: @comment, article: @article %>
-
-<h4>Comments</h4>
-<% @comments.each do |comment| %>
-    <p><%= comment.inspect %></p>
-    <%#= link_to button_tag("Edit", type:"button", class:""), edit_article_comment_path(@article, review) %>
-<% end %>
 
 <% if current_user != nil %>
   <% if current_user.id == @article.user_id %>
@@ -49,3 +40,20 @@
   <% end %>
 <% end %>
 <%= link_to 'Back', articles_path %>
+
+<h4>Add a Comment</h4>
+<%=render "comments/form", article: @article, comment: @comment %>
+
+<h4>Comments</h4>
+<% @comments.each do |comment| %>
+    <p><%= comment.inspect %></p>
+
+  <% if current_user != nil %>
+    <% if current_user.id == comment.user_id %>    
+      <%= link_to button_tag("Edit", type:"button", class:""), edit_article_comment_path(@article, comment.id) %>
+      <%= link_to button_tag("Delete", type:"button", class:""), article_comment_path(@article, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  <% end %>
+<% end %>
+
+
