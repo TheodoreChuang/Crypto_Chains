@@ -3,17 +3,34 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
+<div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :bio %>
+    <%= f.text_area :bio, autofocus: true, autocomplete: "bio" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :display_email %>
+    <%= f.check_box :display_email, autofocus: true, autocomplete: "display_email" %>
   </div>
 
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %>
+    <div>
     <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
   </div>
 
   <div class="field">
