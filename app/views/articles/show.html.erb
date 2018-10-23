@@ -43,7 +43,7 @@ DisLike
   <%= @user %>
 </p>
 
-<% if current_user != nil %>
+<% if user_signed_in? %>
   <% if current_user.id == @article.user_id %>
     <%= link_to 'Edit', edit_article_path(@article)%>
     <%= link_to 'Destroy', article_path, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -58,7 +58,7 @@ DisLike
 <% @comments.each do |comment| %>
     <p><%= comment.inspect %></p>
 
-  <% if current_user != nil %>
+  <% if user_signed_in? %>
     <% if current_user.id == comment.user_id %>    
       <%= link_to button_tag("Edit", type:"button", class:""), edit_article_comment_path(@article, comment.id) %>
       <%= link_to button_tag("Delete", type:"button", class:""), article_comment_path(@article, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>

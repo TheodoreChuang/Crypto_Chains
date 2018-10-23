@@ -73,16 +73,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  def up_vote
-    @article.upvote_from current_user
-    redirect_to @article
-  end
-
-  def down_vote
-    @article.downvote_from current_user
-    redirect_to @article
-  end
-
   private
 
   # Use callbacks to share common setup or constraints between actions.
