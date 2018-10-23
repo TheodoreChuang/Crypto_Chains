@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :up_vote, :down_vote]
+  before_action :authenticate_user!, only: [:new, :create, :up_vote, :down_vote]
   before_action :check_owner?, only: [:edit, :update, :destroy]
 
   # GET /articles
@@ -71,6 +71,16 @@ class ArticlesController < ApplicationController
       format.html { redirect_to articles_url, notice: "Article was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def up_vote
+    @article.upvote_from current_user
+    redirect_to @article
+  end
+
+  def down_vote
+    @article.downvote_from current_user
+    redirect_to @article
   end
 
   private

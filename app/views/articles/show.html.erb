@@ -23,6 +23,16 @@
   <%= @article.source_date %>
 </p>
 
+<%= link_to like_article_path(@article), method: :put do %>
+Like
+<% end %>
+<%= @article.get_upvotes.size %>
+
+<%= link_to dislike_article_path(@article), method: :put do %>
+DisLike
+<% end %>
+<%= @article.get_downvotes.size %>
+
 <p>
   <strong>Views:</strong>
   <%= @article.views %>
