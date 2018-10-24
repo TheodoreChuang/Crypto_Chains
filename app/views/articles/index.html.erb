@@ -1,14 +1,6 @@
-<h1>Welcome <%= current_user.name if user_signed_in? %></h1>
+<h5><%= "Welcome #{ current_user.name}" if user_signed_in? %></h5>
 
-<div>
-<%= current_user.inspect %>
-</div>
-<div>
-<%#= user_session.inspect %>
-</div>
-
-<h1>Articles</h1>
-
+<h3>Articles</h3>
 <table>
   <thead>
     <tr>
@@ -47,6 +39,9 @@
   </tbody>
 </table>
 
-<br>
+</table>
 
 <%= link_to 'New Article', new_article_path %>
+
+<%#= current_user.inspect %>
+<%#= user_session.inspect %>

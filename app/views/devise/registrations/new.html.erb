@@ -1,46 +1,65 @@
-<h2>Sign up</h2>
+<h4 class="blue-text lighten-2">Sign up</h4>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<div class="row">
+  <%= form_for(resource, class: "col s12", as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-<div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :name %>
+          <%= f.text_field :name, class: "validate", autofocus: true, autocomplete: "name" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :bio %>
-    <%= f.text_area :bio, autofocus: true, autocomplete: "bio" %>
-  </div>
+      <div class="row"> 
+        <div class="input-field col s12">
+          <%= f.label :bio %>
+          <%= f.text_area :bio, class: "materialize-textarea validate", autofocus: true, autocomplete: "bio" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <div class="row">      
+        <div class="input-field col s12">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "validate", autofocus: true, autocomplete: "email" %>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :display_email %>
-    <%= f.check_box :display_email, autofocus: true, autocomplete: "display_email" %>
-  </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <div class="switch">
+            <%= f.label :display_email %>
+            <label>
+              No
+              <%= f.check_box :display_email, autofocus: true, autocomplete: "display_email" %>
+              <span class="lever"></span>
+              Yes
+            </label>
+          </div>
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: "validate", autocomplete: "new-password" %>
+          <% if @minimum_password_length %>
+            <span class="helper-text">(<%= @minimum_password_length %> characters minimum)</span>
+          <% end %>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, class: "validate", autocomplete: "new-password" %>
+        </div>
+      </div>
+
+      <button class="actions btn waves-effect waves-light" type="submit" name="action">Sign Up
+        <i class="material-icons right">send</i>
+      </button>
     <% end %>
-    <div>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-  </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>
