@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   end
   devise_for :users, path: "", path_names: {sign_in: "login", sign_out: "logout", sign_up: "register"}
   root "articles#index"
+  get 'tags/:tag', to: 'articles#index', as: "tag"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

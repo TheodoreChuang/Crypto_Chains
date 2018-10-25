@@ -47,6 +47,13 @@
     </div>
   </div>
 
+  <div class="row">
+    <div class="input-field col s12">
+      <%= form.label "Tags" %>
+      <%= form.text_field :all_tags, placeholder: "Tags separated with comma" %>
+    </div>
+  </div>
+
   <button class="actions btn waves-effect waves-light" type="submit" name="action"><%= form.submit %>
       <i class="material-icons right">send</i>
     </button>
