@@ -2,51 +2,18 @@
 
 <div class="row">
   <h3>Articles</h3>
-  <span>Sort by: ________</span>
+  <%# <span>Sort by: ________</span> %>
 </div>
 
-<!-- 
-<table>
-  <thead>
-    <tr>
-      <th>Votes</th>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Source</th>
-      <th>Source date</th>
-      <th>Views</th>
-      <th colspan="2"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><i class="tiny material-icons">arrow_upward</i><%= article.get_upvotes.size %>  <%= article.get_downvotes.size %><i class="tiny material-icons">arrow_downward</i></td>
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
-        <td><%= article.source %></td>
-        <td><%= article.source_date %></td>
-        <td><%= article.views %></td>
-        <td><%= link_to 'Show', article %></td>
-        <%# if user_signed_in? %>
-          <td><%#= link_to 'Edit', edit_article_path(article) if current_user.id  == article.user_id %></td>
-        <%# end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
--->
-
-
-
 <div class="row">
-  <% @articles.each do |article| %>
-    
+  <% @articles.reverse.each do |article| %>
     <div class="col s12 m6 l4">
       <%= link_to article do%>
         <div class="card small blue-grey darken-1 hoverable">
           <div class="card-content white-text">
+            <div class="tags">
+              <%=raw tag_links(article.all_tags) %>
+            </div>
             <span class="card-title"><%= article.title %></span>
             <%= article.description %><i class="tiny material-icons">arrow_forward</i>
           </div>
@@ -60,8 +27,6 @@
 
   <% end %>
 </div>
-
-
 
 <div class="fixed-action-btn">
   <%= link_to new_article_path, class: "waves-effect waves-light btn-floating btn-large" do %>

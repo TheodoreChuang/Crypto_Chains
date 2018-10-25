@@ -1,28 +1,9 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
-# drivers = []
-# groups = []
+tags = ["fundamentals", "cryptography", "distributed systems", "game theory", "networking", "consensus", "scalability", "economics", "bitcoin", "ethereum", "smart contracts", "infrastructure", "IPFS", "identity", "privacy", "securities"]
 
-# 5.times do |i|
-#   d = Driver.create(name: "Driver #{i}")
-#   g = Group.create(name: "Group #{i}")
-
-#   drivers.push(d.id)
-#   groups.push(g.id)
-# end
-
-# drivers.each do |driver_id|
-#   DriversGroup.create(driver_id: driver_id, group_id: groups[rand(groups.length - 1)])
-#   Avatar.create(image: "image.png", driver_id: driver_id) if rand(2).to_i == 1
-# end
-
-50.times do |i|
+25.times do |i|
   User.create(
     email: "user#{i}@mail.com",
     password: "password",
@@ -38,20 +19,34 @@
     source: Faker::Internet.url,
     source_date: Faker::Date.backward(300),
     views: rand(300),
-    user_id: rand(51),
+    user_id: rand(25),
   )
 
+  # FIXME
+  # i += 1
+  # ArticlesTag.create(
+  #   article_id: i,
+  #   tag_id: rand(tags.length - 1),
+  # )
+end
+
+75.times do |i|
   Comment.create(
-    title: "Comment title",
+    title: Faker::Book.title,
     content: Faker::ChuckNorris.fact,
     rate: rand(6),
-    user_id: rand(51),
-    article_id: rand(51),
+    user_id: rand(25),
+    article_id: rand(25),
   )
 end
 
+tags.each do |tag|
+  Tag.create(name: tag)
+end
+
+# FIXME
 # users.each do |user_id|
-#   Votable????.create(
+#   ? Votes.create(
 #     votable_type: "Article",
 #     votable_id: rand(11),
 #     voter_type: "User",
