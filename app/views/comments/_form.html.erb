@@ -1,32 +1,51 @@
-<%= form_with(model: [@article, @comment], local: true) do |form| %>
-  <% if @comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<div class="row">
+  <%= form_with(model: [@article, @comment], local: true) do |form| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
-      <ul>
-      <% comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% comment.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <div class="row">
+    <div class="input-field">
+      <%= form.label :title %>
+      <%= form.text_field :title, class: "validate" %>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field">
+      <%= form.label :content %>
+      <%= form.text_area :content, class: "materialize-textarea validate" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="input-field col s2">
+      <%= form.label :rate %>
+      <%= form.number_field :rate, class: "validate" %>
+    </div>
+  </div>
+  
+<%# <div class="row">
+  <div class="input-field">
+    <select name="comment[rate]" id="comment_rate">
+      <option value="1">Option 1</option>
+      <option value="2">Option 2</option>
+      <option value="3">Option 3</option>
+    </select>
+    <label>Rate</label>
+  </div>
+</div> %>
+
+    <button class="actions btn waves-effect waves-light" type="submit" name="action"><%= form.submit %>
+      <i class="material-icons right">send</i>
+    </button>
   <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rate %>
-    <%= form.number_field :rate %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

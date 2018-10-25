@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+// or remove tree and manually import files here
+// can also target specific pages with controller-action + <body class="#{controller}-#{action}">
+
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import "materialize/components/color-variables";
 $primary-color: color("blue", "lighten-2") !default;
