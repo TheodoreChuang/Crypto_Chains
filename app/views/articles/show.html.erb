@@ -1,69 +1,91 @@
-<p>
-  <strong>Title:</strong>
-  <%= @article.title %>
-</p>
+<div class="row">
+  <p>
+    <strong>Title:</strong>
+    <%= @article.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @article.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @article.description %>
+  </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @article.content %>
-</p>
+  <p>
+    <strong>Content:</strong>
+    <%= @article.content %>
+  </p>
 
-<p>
-  <strong>Source:</strong>
-  <%= @article.source %>
-</p>
+  <p>
+    <strong>Source:</strong>
+    <%= link_to nil,"#{@article.source}" %>
+  </p>
 
-<p>
-  <strong>Source date:</strong>
-  <%= @article.source_date %>
-</p>
+  <p>
+    <strong>Source date:</strong>
+    <%= @article.source_date %>
+  </p>
 
-<%= link_to like_article_path(@article), method: :put do %>
-Like
-<% end %>
-<%= @article.get_upvotes.size %>
-
-<%= link_to dislike_article_path(@article), method: :put do %>
-DisLike
-<% end %>
-<%= @article.get_downvotes.size %>
-
-<p>
-  <strong>Views:</strong>
-  <%= @article.views %>
-</p>
-
-<p>
-  <strong>Posted By:</strong>
-  <%= @user %>
-</p>
-
-<% if user_signed_in? %>
-  <% if current_user.id == @article.user_id %>
-    <%= link_to 'Edit', edit_article_path(@article)%>
-    <%= link_to 'Destroy', article_path, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to like_article_path(@article), method: :put, class:"waves-effect waves-light btn-flat" do %>
+  Like
   <% end %>
-<% end %>
-<%= link_to 'Back', articles_path %>
+  <%= @article.get_upvotes.size %>
 
-<h4>Add a Comment</h4>
-<%=render "comments/form", article: @article, comment: @comment %>
+  <%= link_to dislike_article_path(@article), method: :put, class:"waves-effect waves-light btn-flat" do %>
+  DisLike
+  <% end %>
+  <%= @article.get_downvotes.size %>
 
-<h4>Comments</h4>
-<% @comments.each do |comment| %>
-    <p><%= comment.inspect %></p>
+  <p>
+    <strong>Views:</strong>
+    <%= @article.views %>
+  </p>
 
+  <p>
+    <strong>Posted By:</strong>
+    <%= @user %>
+  </p>
+</div>
+
+
+<div class="row">
   <% if user_signed_in? %>
-    <% if current_user.id == comment.user_id %>    
-      <%= link_to button_tag("Edit", type:"button", class:""), edit_article_comment_path(@article, comment.id) %>
-      <%= link_to button_tag("Delete", type:"button", class:""), article_comment_path(@article, comment.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% if current_user.id == @article.user_id %>
+      <%= link_to 'Edit', edit_article_path(@article), class:"waves-effect waves-light btn-flat"%>
+      <%= link_to 'Destroy', article_path, method: :delete, data: { confirm: 'Are you sure?' }, class:"waves-effect waves-light btn-flat" %>
     <% end %>
   <% end %>
-<% end %>
+  <%= link_to 'Back', articles_path, class:"waves-effect waves-light btn-flat" %>
+</div>
+
+
+<div class="row">
+  <div class="col s8">
+    <h5 class="blue-text lighten-2">Add a Comment</h5>
+    <%= render "comments/form", article: @article, comment: @comment %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col s8">
+    <h5 class="blue-text lighten-2">Comments</h5>
+    <% @comments.each do |comment| %>
+        <ul class="collection">
+          <li class="collection-item"><span class="col s1"><%= comment.rate %></span><%= comment.title %></li>
+          <li class="collection-item"><%= comment.content %></li>
+          <li class="collection-item"><%= comment.user.name %></li>
+        </ul>
+
+      <% if user_signed_in? %>
+        <% if current_user.id == comment.user_id %>    
+          <%= link_to 'Edit', edit_article_comment_path(@article, comment.id), class:"waves-effect waves-light btn-flat" %>
+          <%= link_to 'Delete', article_comment_path(@article, comment.id), method: :delete, data: { confirm: 'Are you sure?' }, class:"waves-effect waves-light btn-flat" %>
+        <% end %>
+      <% end %>
+  <% end %>
+  </div>
+</div>
+
+  </div>
+</div>
 
 

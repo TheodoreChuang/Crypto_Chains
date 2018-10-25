@@ -24,30 +24,30 @@
 
 50.times do |i|
   User.create(
-    email: Faker::Internet.username,
+    email: "user#{i}@mail.com",
     password: "password",
     name: Faker::Name.name,
     bio: Faker::GreekPhilosophers.quote,
     display_email: 0,
   )
 
-  #   Article.create(
-  #     title: Faker::Book.title,
-  #     description: Faker::Movie.quote,
-  #     content: Faker::Lorem.paragraph(3),
-  #     source: Faker::Internet.url,
-  #     source_date: Faker::Date.backward(300),
-  #     views: rand(300),
-  #     user_id: rand(11),
-  #   )
+  Article.create(
+    title: Faker::Book.title,
+    description: Faker::Movie.quote,
+    content: Faker::Lorem.paragraph(3),
+    source: Faker::Internet.url,
+    source_date: Faker::Date.backward(300),
+    views: rand(300),
+    user_id: rand(51),
+  )
 
-  #   Comment.create(
-  #     title: "Comment title",
-  #     content: Faker::ChuckNorris.fact,
-  #     rate: rand(6),
-  #     user_id: rand(11),
-  #     article_id: rand(11),
-  #   )
+  Comment.create(
+    title: "Comment title",
+    content: Faker::ChuckNorris.fact,
+    rate: rand(6),
+    user_id: rand(51),
+    article_id: rand(51),
+  )
 end
 
 # users.each do |user_id|

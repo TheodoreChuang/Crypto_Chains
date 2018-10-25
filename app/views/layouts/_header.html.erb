@@ -1,29 +1,29 @@
 <nav class="nav-extended">
     <div class="nav-wrapper">
-        <%= link_to 'CryptoChains', articles_path, class: "brand-logo center" %>
-        <%# <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a> %>
+        <%= link_to 'CryptoChains', articles_path, class: "brand-logo center waves-effect blue lighten-2" %>
+         <%# <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>  %>
         <ul id="nav-mobile" class="right">
-            <li><%= link_to 'Register', new_user_registration_path unless user_signed_in? %></i>
-            <li><%= link_to 'Login', new_user_session_path unless user_signed_in? %></i>
+            <li><%= link_to 'Register', new_user_registration_path, class:"white-text waves-effect waves-blue btn-flat" unless user_signed_in? %></i>
+            <li><%= link_to 'Log In', new_user_session_path, class:"white-text waves-effect waves-blue btn-flat" unless user_signed_in? %></i>
 
-            <li><%= link_to 'Edit Profile', edit_user_registration_path if current_user %></i>
-            <li><%= link_to 'Logout', destroy_user_session_path, method: :delete if current_user %></i>
+            <li><%= link_to 'Edit Profile', edit_user_registration_path, class:"white-text waves-effect waves-blue btn-flat" if current_user %></i>
+            <li><%= link_to 'Log Out', destroy_user_session_path, method: :delete, class:"white-text waves-effect waves-blue btn-flat" if current_user %></i>
         </ul>
     </div>
 
-    <div class="nav-content">
+    <div class="nav-content row">
+    
       <ul class="tabs tabs-transparent">
-        <li class="tab"><a href="#test1">Test 1</a></li>
-        <li class="tab"><a class="active" href="#test2">Test 2</a></li>
-        <li class="tab"><a href="#test3">Disabled Tab</a></li>
-        <li class="tab"><a href="#test4">Test 4</a></li>
+        <li class="tab col s1"><a href="#test1">Test 1</a></li>  <!-- class="active" -->
+        <li class="tab col s1"><a href="#test2">Test 2</a></li> 
+        <li class="tab col s1"><a href="#test3">Disabled Tab</a></li>
+        <li class="tab col s1"><a href="#test4">Test 4</a></li>
         <li>
       </ul>
     </div>
 </nav>
 
-
-<!-- 
+<!--
 <ul class="sidenav" id="mobile-demo">
     <li><%= link_to 'Register', new_user_registration_path unless user_signed_in? %></i>
     <li><%= link_to 'Login', new_user_session_path unless user_signed_in? %></i>
